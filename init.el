@@ -1,8 +1,18 @@
+(defun load-if-exists (f)
+  "load the elisp file only if it exists and is readable"
+  (if (file-readable-p f)
+      (load-file f)))
+
+
+(package-initialize)
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+;; (add-to-list 'package-archives
+;; 	     '("melpa" . "http://stable.melpa.org/packages/"))
+(load-if-exists "~/.emacs.d/myProxy.el")
+;; (package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -21,7 +31,9 @@
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(custom-enabled-themes nil)
- '(tool-bar-mode nil))
+ '(package-selected-packages
+   (quote
+    (org undo-tree expand-region iedit auto-complete counsel ace-window org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

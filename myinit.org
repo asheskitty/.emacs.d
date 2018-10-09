@@ -4,10 +4,33 @@
 
 * interface tweaks
   #+BEGIN_SRC emacs-lisp
-    ;; (setq inhibit-startup-message t)
+    (column-number-mode t)
+    (setq indent-tabs-mode nil)
     (tool-bar-mode -1)
-    ;; (fset 'yes-or-no-p 'y-or-n-p)
+    ;; (setq electric-pair-mode t)
     (global-set-key (kbd "<f5>") 'revert-buffer)
+    ;; (setq inhibit-startup-message t)
+    ;; (fset 'yes-or-no-p 'y-or-n-p)
+
+    ;; Set Cursor Color
+    (set-cursor-color "red")
+
+    ;; Death to the ^M
+    (defun remove-dos-eol ()
+      "Removes the disturbing '^M' showing up in files containing mixed UNIX and DOS line endings."
+      (interactive)
+      (setq buffer-display-table (make-display-table))
+      (aset buffer-display-table ?\^M []))
+
+    ;; A central place for backup files
+    (push '("." . "~/.emacs/backups") backup-directory-alist)
+
+    ;; Make editor calls in remote shells with local emacs
+    ;; with-editor is a magit dependancy
+    ;; (add-hook 'shell-mode-hook 'with-editor-export-editor)
+
+    ;; blocks cursor-type customization if non-nil, triggered by some accessibility APIs
+    (setq w32-use-visible-system-caret nil)
   #+END_SRC
 
 * try
@@ -306,10 +329,10 @@
 
 * Load other files
   #+BEGIN_SRC emacs-lisp
-    (defun load-if-exists (f)
-      "load the elisp file only if it exists and is readable"
-      (if (file-readable-p f)
-	  (load-file f)))
+    ;; (defun load-if-exists (f)
+    ;;   "load the elisp file only if it exists and is readable"
+    ;;   (if (file-readable-p f)
+    ;;       (load-file f)))
 
     (load-if-exists "~/.emacs.d/my-site-specific-config.el")
     (load-if-exists "~/Dropbox/shared/not-for-github.el")
@@ -323,6 +346,51 @@
       (global-undo-tree-mode))
   #+END_SRC
 
+* Tramp
+  #+BEGIN_SRC emacs-lisp
+    ;; by default desktop doesn't save Tramp buffers, let's change that
+    ;;(setq desktop-files-not-to-save "^$")
+    (setq desktop-buffers-not-to-save "^$")
+
+    ;; Automatically save and restore sessions
+    (setq desktop-dirname             "~/.emacs.d/desktop/"
+	  desktop-base-file-name      ".emacs.desktop"
+	  desktop-base-lock-name      "lock"
+	  desktop-path                (list desktop-dirname)
+	  desktop-save                t
+	  desktop-files-not-to-save   "^$" ;reload tramp paths
+	  desktop-load-locked-desktop nil
+	  desktop-auto-save-timeout   30)
+    (desktop-save-mode 0)
+
+    (defun my-desktop ()
+      "Load the desktop and enable autosaving"
+      (interactive)
+      (let ((desktop-load-locked-desktop "ask"))
+	(desktop-read)
+	(desktop-save-mode 1)))
+
+    ;; Tramp stuff
+    ;; make sure to set: export PS1="[\h:\w] $ "
+    ;;  in .bashrc for dirtrack to work
+    (set-variable 'dirtrack-list '("^.*[^ ]+:\\(.*\\)]" 1 nil))
+    (dirtrack-mode 1)
+    ;; (setq ssh-mode-hook 'ssh-directory-tracking-mode)
+  #+END_SRC
+* C++
+  #+BEGIN_SRC emacs-lisp
+    ;; (load "~/.emacs.d/packages/google-c-style.el")
+    ;; (require 'google-c-style)
+    ;; (add-hook 'c-mode-common-hook 'google-c-style)
+    ;; (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+  #+END_SRC
+* VHDL
+  #+BEGIN_SRC emacs-lisp
+    (setq vhdl-electric-mode t)
+    (setq vhdl-indent-tabs-mode t)
+    (setq vhdl-standard (quote (93 nil)))
+    (setq vhdl-stutter-mode t)
+  #+END_SRC
 * Themes
   #+BEGIN_SRC emacs-lisp
 
