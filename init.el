@@ -9,6 +9,8 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("org" . "https://orgmode.org/elpa/") t)
 ;; (add-to-list 'package-archives
 ;; 	     '("melpa" . "http://stable.melpa.org/packages/"))
 (load-if-exists "~/.emacs.d/myProxy.el")
@@ -30,10 +32,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(custom-enabled-themes nil)
- '(package-selected-packages
-   (quote
-    (org undo-tree expand-region iedit auto-complete counsel ace-window org-bullets which-key try use-package))))
+ '(custom-enabled-themes nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
