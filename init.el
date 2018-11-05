@@ -1,3 +1,4 @@
+
 (defun load-if-exists (f)
   "load the elisp file only if it exists and is readable"
   (if (file-readable-p f)
@@ -22,6 +23,7 @@
 	(package-install 'use-package))
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
+;; (org-babel-load-file (expand-file-name "myinit.org" user-emacs-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

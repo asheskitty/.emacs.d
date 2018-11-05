@@ -379,6 +379,12 @@
   #+END_SRC
 * C++
   #+BEGIN_SRC emacs-lisp
+    (use-package google-c-style
+      ;; :defer t
+      :ensure t
+      :config
+      (add-hook 'c-mode-common-hook 'google-set-c-style)
+      (add-hook 'c-mode-common-hook 'google-make-newline-indent))
     ;; (load "~/.emacs.d/packages/google-c-style.el")
     ;; (require 'google-c-style)
     ;; (add-hook 'c-mode-common-hook 'google-c-style)

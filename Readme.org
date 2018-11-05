@@ -1,3 +1,17 @@
 #+STARTUP: showall hidestars
 
 My emacs config
+
+* Remote Client/Server
+** https://stackoverflow.com/questions/12546722/using-emacs-server-and-emacsclient-on-other-machines-as-other-users
+** https://emacs.stackexchange.com/questions/371/how-do-i-use-emacsclient-to-connect-to-a-remote-emacs-instance
+** https://emacs.stackexchange.com/questions/15144/emacsclient-to-access-remote-emacs-server
+** 26.1 NEWS
+*** Emacsclient has a new option '-T' / '--tramp'.
+This helps with using a local Emacs session as the server for a remote
+emacsclient.  With appropriate setup, one can now set the EDITOR
+environment variable on a remote machine to emacsclient, and
+use the local Emacs to edit remote files via Tramp.  See the node
+"(emacs) emacsclient Options" in the user manual for the details.
+** https://www.gnu.org/software/emacs/manual/html_node/emacs/emacsclient-Options.html
+** https://www.gnu.org/software/emacs/manual/html_node/emacs/TCP-Emacs-server.html#TCP-Emacs-server
