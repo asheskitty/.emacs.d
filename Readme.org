@@ -18,3 +18,4 @@ use the local Emacs to edit remote files via Tramp.  See the node
 ** http://blog.habnab.it/blog/2013/06/25/emacsclient-and-tramp/
 ** https://snarfed.org/emacsclient_in_tramp_remote_shells
 *** Emacs 26.1 added official support for this with a new emacsclient --tramp option! The 26.1 manual isn’t online yet, but you can learn more with M-x info inside Emacs 26.1, Emacs => emacsclient options.
+** https://www.reddit.com/r/emacs/comments/3vod4y/controlling_a_remote_emacs_session_with_emacs/
